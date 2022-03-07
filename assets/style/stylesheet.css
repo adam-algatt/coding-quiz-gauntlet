@@ -1,3 +1,5 @@
+/*Universal Styling*/
+
 * {
     padding: 0;
     margin: 0;
@@ -7,15 +9,16 @@ body {
     background-color: darkturquoise;
 }
 
+/* highscore/timer section styling */
+
 #header { 
 padding-right: 15%;
-padding-left: 15%; 
+padding-left: 10%; 
+padding-top: 50px
 }
 
 #header li {
     list-style: none;
 }
 
-#main p {
-    font-size: large;
-}
+/* Main Section styling */
