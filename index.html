@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="icon" href="./assets/images/icons8-graduation-32.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="./assets/style/stylesheet.css">
     <title>Coding Quiz!</title>
 </head>
@@ -22,7 +23,7 @@
 </nav>
 
 <!--Main section where questions, answer buttons will be dynamically injected-->
-<section class="main d-flex-column text-center mt-5 ml-auto mr-auto p-3">
+<section id="main" class="d-flex-column text-center mt-5 ml-auto mr-auto p-3">
     <div id='text' class="d-flex-column ml-auto mr-auto text-center p-5">
 <h1 id="title" class="p-3">Coding Quiz Challenge</h1>
 <p id="question" class="h5">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
@@ -30,6 +31,20 @@
 <div class="button">
     <button type="button" id="quiz-btn" class="btn btn-primary">Start Quiz</button>
 </div>
+</section>
+<!--Begin Questions Section-->
+<section id="questions-container" class="d-none">
+<div id="question" class="col-12">
+    <p id="the-question" class="h3 pb-2 mx-auto">lkajd;lfkajds;lfkjasd;lfkjasd;lfkjads</p>
+    <button type="button" class="btn btn-primary btn-lg active">Left</button>
+    <button type="button" class="btn btn-primary btn-lg active">Middle</button>
+    <button type="button" class="btn btn-primary btn-lg active">Left</button>
+    <button type="button" class="btn btn-primary btn-lg active">Middle</button>
+</div>
+
+
+</section>
+
 </section>
 
 
