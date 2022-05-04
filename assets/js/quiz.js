@@ -12,32 +12,53 @@ const answerButtonArea = $('#question');
 // stopped at randomizeQuestions get random #
 
 
+
+var quizQuestions = [{
+        "question": "javascript is a ______ oriented programming language.",
+        "answers": [
+        {text: "object", correct: true},
+        {text: "program", correct: false},
+        {text: "functional", correct: false},
+        {text: "prayer", correct: false},
+]
+    },
+    {
+        "question": "javascript is a ______ typed language.",
+        "answers": [
+            {text: "loosely", correct: true},
+            {text: "false", correct: false},
+            {text: "happy", correct: false},
+            {text: "quickly", correct: false},
+    ]
+    },
+    {
+        "question": "[{'name:' 'bob'}]; is an example of a _________ object.",
+        "answers": [
+            {text: "nested", correct: true},
+            {text: "bedded", correct: false},
+            {text: "sleepy", correct: false},
+            {text: "asynchronous", correct: false},
+    ]
+    }
+];
+
+
+
 btnEl.click(function (e) { 
     e.preventDefault();
     console.log('started');
     btnEl.hide();
     main.hide();
     qContainer.attr('class', 'd-flex flex-sm-fill'); 
+    quizQuestions.forEach(question => {
+
+    })
     randomizedQuestions = quizQuestions.sort(() => Math.random() * (quizQuestions.length))
 });
 
-var quizQuestions = [{
-        "question": "javascript is a ______ oriented programming language.",
-        "correct": "object",
-        "wrong": ["program", "function", "prayer"]
-    },
-    {
-        "question": "javascript is a ______ typed language.",
-        "correct": "loosely",
-        "false": ["false", "happy", "quickly"]
-    },
-    {
-        "question": "[{'name:' 'bob'}]; is an example of a _________ object.",
-        "correct": "nested",
-        "false": ["bedded", "sleepy", "asynchronous"]
-    },
-];
-
+function nextQuestion() {
+    
+}
 
 //function populates questions and answer buttons in #main section
 // function populateQuestions(arr) {
