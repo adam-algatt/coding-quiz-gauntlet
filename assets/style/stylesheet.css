@@ -23,8 +23,6 @@ padding-top: 50px
 
 /* Main Section styling */
 
-
-
 /* Begin questions section styling */
 #questions-container {
     margin-left: auto;
@@ -38,4 +36,33 @@ padding-top: 50px
     margin: 0 auto 5px auto;
     min-width: 550px;
     max-width: fit-content;
+}
+
+#home-anchor {
+    text-decoration: none;
+    color: black;
+}
+
+#scores-h1 {
+    margin: 0 25% 5px 25%;
+}
+
+/* #button-container {
+width: 350px;
+} */
+
+ #reset-button {
+    display: block;
+    margin: 0 auto 5px auto;
+    width: 250px;
+    padding: 7px;
+    /* max-width: fit-content; */
+}
+#home-button {
+    display: block;
+    margin: 0 auto 5px auto;
+    width: 250px;
+    padding: 7px;
+
+    /* max-width: fit-content; */
 }

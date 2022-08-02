@@ -10,15 +10,15 @@
     <link rel="stylesheet" href="./assets/style/stylesheet.css">
     <title>Coding Quiz!</title>
 </head>
+
 <body>
-    
     <!--high score and timer nav bar-->
 <nav id="header" class="d-inline-flex justify-content-between col-12">
     <ul class="d-inline-flex"> 
-<li id="high-scores"  ><a href="" class="mr-auto">View High Scores</a></li>
+<li id="high-scores"  ><a href="highscores.html" class="mr-auto text-decoration-none text-black text-nowrap">View High Scores</a></li>
 </ul>
-<ul class="ml-auto">
-    <li id="timer" class="ml-auto">Time: 0</li>
+<ul id="timer-parent" class="ml-auto">
+    <li id="timer" class="text-nowrap"></li>
 </ul>
 </nav>
 
@@ -34,39 +34,18 @@
 </section>
 
 <!--Begin Questions Section-->
-<section id="questions-container" class="d-none">
+<section id="questions-container" class="d-none mt-5">
 <div id="question" class="col-12">
-    <p id="the-question" class="h3 pb-2 mx-auto"></p>
-    <button type="button" class="btn btn-primary btn-lg active">Left</button>
-    <button type="button" class="btn btn-primary btn-lg active">Middle</button>
-    <button type="button" class="btn btn-primary btn-lg active">Left</button>
-    <button type="button" class="btn btn-primary btn-lg active">Middle</button>
+    <p id="the-question" class="h3 pb-2 mx-auto"></p> 
+    <button type="button" class="btn btn-primary btn-lg active" id="0">one</button>
+    <button type="button" class="btn btn-primary btn-lg active" id="1">two</button>
+    <button type="button" class="btn btn-primary btn-lg active" id="2">three</button>
+    <button type="button" class="btn btn-primary btn-lg active" id="3">four</button>
 </div>
 
 
 </section>
 
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <script src="./assets/js/quiz.js"></script>
+    <script type="module" src="./assets/js/quiz.js"></script>
 </body>
 </html>
