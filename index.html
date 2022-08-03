@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="icon" href="./assets/images/icons8-graduation-32.png">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="./assets/style/stylesheet.css">
     <title>Coding Quiz!</title>
 </head>
@@ -16,6 +15,7 @@
 <nav id="header" class="d-inline-flex justify-content-between col-12">
     <ul class="d-inline-flex"> 
 <li id="high-scores"  ><a href="highscores.html" class="mr-auto text-decoration-none text-black text-nowrap">View High Scores</a></li>
+<li id="score-li" class="d-none"></li>
 </ul>
 <ul id="timer-parent" class="ml-auto">
     <li id="timer" class="text-nowrap"></li>
@@ -44,8 +44,22 @@
 </div>
 
 
-</section>
+    <div class="d-none" id="save-score-container">
+        <h1 class="mx-auto my-5" id="scores-h1">Quiz Warriors</h1>
+        <input type="text" class="d-flex mx-auto" id="score-input" placeholder="Enter your initials">
+        <button id="save-score-button" class="btn btn-primary mt-3 mb-5">Save Score</button>
+        <ol id="score-list">
 
-    <script type="module" src="./assets/js/quiz.js"></script>
+        </ol>
+    </div>
+    <div class="d-none" id="button-container">
+<button id="reset-button" class="btn btn-primary">Erase Highscores</button>
+<button id="home-button" class="btn btn-primary"><a id="home-anchor" href="index.html">Home Page</a></button>
+    </div>
+
+
+</section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./assets/js/quiz.js"></script>
 </body>
 </html>

@@ -1,10 +1,10 @@
 
 const resetScores = $('#reset-button');
 const scoreList = $('#score-list');
-export const scoreInput = $('#score-input');
+//  const scoreInput = $('#score-input');
 let transferScore;
 // function to load localStorage (called by terminate() in quiz.js)
-export function showScores(score) {
+ function showScores(score) {
     transferScore = score;
     // scoreInput.attr('class', '');
     scoreInput.attr('class', 'd-flex mx-auto');
@@ -56,23 +56,23 @@ showScores()
 }); 
 };
 
-$('#save-score-button').on('click', function () {
-        let name = $('#score-input').val(); 
-        console.log('saveScore() called');
-    // set scores to what's in local storage or empty arr that high 
-    //score objects can be pushed to 
-    let scores = JSON.parse(window.localStorage.getItem('scores')) || [];
+// $('#save-score-button').on('click', function () {
+//         let name = $('#score-input').val(); 
+//         console.log('saveScore() called');
+//     // set scores to what's in local storage or empty arr that high 
+//     //score objects can be pushed to 
+//     let scores = JSON.parse(window.localStorage.getItem('scores')) || [];
        
-    let highScore = {
-          score: transferScore,
-          initials: name
-        };
-        console.log(highScore);
-        // add highscore to scores arr then add scores arr to localStorage
-    scores.push(highScore);
-    window.localStorage.setItem('scores', JSON.stringify(scores))
-    location.reload;
-})
+//     let highScore = {
+//           score: transferScore,
+//           initials: name
+//         };
+//         console.log(highScore);
+//         // add highscore to scores arr then add scores arr to localStorage
+//     scores.push(highScore);
+//     window.localStorage.setItem('scores', JSON.stringify(scores))
+//     location.reload;
+// })
 
 
 
