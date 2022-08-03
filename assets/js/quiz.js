@@ -108,6 +108,9 @@ const q4 = $('#3');
 const scoreContainer = $('save-score-container');
 const buttonContainer = $('button-container');
 const saveButton = $('#save-score-button');
+const resetScores = $('#reset-button');
+const scoreList = $('#score-list');
+
 
 let secondsRemaining = 60;
 let clock; 
@@ -121,13 +124,13 @@ function terminate() {
   scoreEl.text(score);
 //replace html data with highscores html data
 clearInterval(quizInterval);
-location.href = './highscores.html'
+// location.href = './highscores.html'
 scoreInput.removeAttr('class');
-// console.log(score);
+console.log('terminate called');
 questionTitleEl.attr('class', 'd-none');
 qContainer.attr('class', 'd-none');
-// scoreContainer.attr('class', 'highscore-container mx-auto text-center');
-// buttonContainer.attr('class', 'button-container');
+scoreContainer.attr('class', 'highscore-container mx-auto text-center');
+buttonContainer.attr('class', 'button-container');
 saveButton.on('click', saveScore());
 console.log('end of terminate');
 }
@@ -145,15 +148,12 @@ if (num === 1) {
 highScoresEl.text(score);
 console.log(questionCount);
 
-if(questionCount !== 3) {
+if(questionCount <= 3) {
 populateQuestion()
 } else {
   terminate()
 }
 }
-
-
-
 
 function populateQuestion() {
   // set question el text as quizQuestions.question 
@@ -181,8 +181,6 @@ qContainer.on('click', 'button', function(e) {
  })
 
 }
-
-
 
 function changeTime(num) {
   num < 1 ? secondsRemaining-- : secondsRemaining -= 10;
@@ -226,6 +224,7 @@ scores.sort((a, b) => {b.score - a.score})
   scores.forEach(score => {
 let scoreLi = scoreList.append(`<li>${score.initials} - ${score.score}</li>`)
 })
+ }
 
 
 
@@ -233,10 +232,10 @@ let scoreLi = scoreList.append(`<li>${score.initials} - ${score.score}</li>`)
 resetScores.click(() => {
   console.log('reset called');
 window.localStorage.removeItem('scores');
-location.reload(); 
-showScores()
+// location.reload(); 
+showScores(score)
 }); 
-};
+
 
 function saveScore() {
   let name = $('#score-input').value; 
@@ -253,14 +252,14 @@ let highScore = {
   // add highscore to scores arr then add scores arr to localStorage
 scores.push(highScore);
 window.localStorage.setItem('scores', JSON.stringify(scores))
-location.reload();
+// location.reload();
 showScores(score);
 
 //switch to highscores.html here and remove previous switch location
 
 }
 
-startBtn.click(function(e) {
+startBtn.on('click', function(e) {
     console.log('started');
     startBtn.hide();
     main.hide();
@@ -270,7 +269,5 @@ startBtn.click(function(e) {
   highScoresEl.attr('class', 'd-none');
   scoreEl.attr('class', '');
   scoreEl.text(`score: ${score}`);
-
-  // terminate();
-    console.log('end click event');
-  })
+    // console.log('end click event');
+  });
