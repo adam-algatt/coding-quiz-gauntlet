@@ -106,11 +106,10 @@ const q2 = $('#1');
 const q3 = $('#2');
 const q4 = $('#3');
 const scoreContainer = $('save-score-container');
-const buttonContainer = $('button-container');
+const buttonContainer = $('#highscore-button-container');
 const saveButton = $('#save-score-button');
 const resetScores = $('#reset-button');
 const scoreList = $('#score-list');
-
 
 let secondsRemaining = 60;
 let clock; 
@@ -118,17 +117,38 @@ let quizInterval;
 let questionCount = 0; 
 let score = 0; 
 
+function saveScore() {
+  let name = $('#score-input').value; 
+  console.log('saveScore() called');
+// set scores to what's in local storage or empty arr that high 
+//score objects can be pushed to 
+let scores = JSON.parse(window.localStorage.getItem('scores')) || [];
+ 
+let highScore = {
+    score: score,
+    initials: name
+  };
+
+  // add highscore to scores arr then add scores arr to localStorage
+scores.push(highScore);
+window.localStorage.setItem('scores', JSON.stringify(scores))
+// location.reload();
+showScores(score);
+
+//switch to highscores.html here and remove previous switch location
+
+}
+
 //function to stop and set location to highscores.html
 function terminate() {
-  // num === 1 ? score += 20 : score -= 30; 
   scoreEl.text(score);
-//replace html data with highscores html data
 clearInterval(quizInterval);
 // location.href = './highscores.html'
-scoreInput.removeAttr('class');
 console.log('terminate called');
 questionTitleEl.attr('class', 'd-none');
 qContainer.attr('class', 'd-none');
+scoreContainer.removeAttr('class');
+buttonContainer.removeAttr('class');
 scoreContainer.attr('class', 'highscore-container mx-auto text-center');
 buttonContainer.attr('class', 'button-container');
 saveButton.on('click', saveScore());
@@ -136,7 +156,7 @@ console.log('end of terminate');
 }
 
 function iterateQuestions(num) {
-questionCount++
+
 
 if (num === 1) {
   score+=20
@@ -145,14 +165,15 @@ if (num === 1) {
   score-=30
   secondsRemaining -= 10
 }
-highScoresEl.text(score);
-console.log(questionCount);
+$('#score-li').text(score);
+console.log('q-count', questionCount);
 
-if(questionCount <= 3) {
+if(questionCount < 3) {
 populateQuestion()
 } else {
   terminate()
 }
+questionCount++
 }
 
 function populateQuestion() {
@@ -166,7 +187,7 @@ q1.text(answersArr[0].text);
 q2.text(answersArr[1].text);
 q3.text(answersArr[2].text);
 q4.text(answersArr[3].text);
-console.log(questionCount);
+// console.log(questionCount);
 //added listener to parent of answer buttons, catches all button clicks
 qContainer.on('click', 'button', function(e) {
   let answerIndex = e.target.id; 
@@ -212,7 +233,7 @@ function initQuiz() {
   transferScore = score;
   // scoreInput.attr('class', '');
   scoreInput.attr('class', 'd-flex mx-auto');
-  console.log(scoreInput); 
+
 //check storage for scores, !scores return empty arr
 console.log('show scores called');
 let scores = JSON.parse(window.localStorage.getItem('scores')) || [];
@@ -237,27 +258,27 @@ showScores(score)
 }); 
 
 
-function saveScore() {
-  let name = $('#score-input').value; 
-  console.log('saveScore() called');
-// set scores to what's in local storage or empty arr that high 
-//score objects can be pushed to 
-let scores = JSON.parse(window.localStorage.getItem('scores')) || [];
+// function saveScore() {
+//   let name = $('#score-input').value; 
+//   console.log('saveScore() called');
+// // set scores to what's in local storage or empty arr that high 
+// //score objects can be pushed to 
+// let scores = JSON.parse(window.localStorage.getItem('scores')) || [];
  
-let highScore = {
-    score: score,
-    initials: name
-  };
+// let highScore = {
+//     score: score,
+//     initials: name
+//   };
 
-  // add highscore to scores arr then add scores arr to localStorage
-scores.push(highScore);
-window.localStorage.setItem('scores', JSON.stringify(scores))
-// location.reload();
-showScores(score);
+//   // add highscore to scores arr then add scores arr to localStorage
+// scores.push(highScore);
+// window.localStorage.setItem('scores', JSON.stringify(scores))
+// // location.reload();
+// showScores(score);
 
-//switch to highscores.html here and remove previous switch location
+// //switch to highscores.html here and remove previous switch location
 
-}
+// }
 
 startBtn.on('click', function(e) {
     console.log('started');
