@@ -1,7 +1,3 @@
-// import showScores from "./highscores.js";
-// const quizQuestions = require('./questions');
-// const showScores = require('./highscores');
-
 
 
  let quizQuestions = [
@@ -124,9 +120,10 @@ function saveScore() {
 // set scores to what's in local storage or empty arr that high 
 //score objects can be pushed to 
 let scores = JSON.parse(window.localStorage.getItem('scores')) || [];
- 
+let transferScore = JSON.parse(window.localStorage.getItem('transfer')) || [];
+
 let highScore = {
-    score: score,
+    score: transferScore,
     initials: name
   };
 
@@ -145,20 +142,17 @@ function terminate(score) {
   // console.log(score);
   // scoreEl.text(score);
 clearInterval(quizInterval);
-score = score; 
+// score = score; 
 location.href = './highscores.html'
 console.log(score);
+
 console.log('terminate called');
-// questionTitleEl.attr('class', 'd-none');
-// qContainer.attr('class', 'd-none');
-// scoreContainer.removeAttr('class');
-// buttonContainer.removeAttr('class');
-// scoreContainer.attr('class', 'highscore-container mx-auto text-center');
-// buttonContainer.attr('class', 'button-container');
 
 console.log('end of terminate');
 }
+
 saveButton.on('click', saveScore);
+
 
 function iterateQuestions(num) {
 
@@ -176,11 +170,16 @@ if(questionCount < 3) {
 populateQuestion()
 questionCount++;
 } else {
+transfer.push(score);
+window.localStorage.setItem('transfer', JSON.stringify(score));
+console.log('transfer score pushed');
   terminate($('#score-li').text())
 }
 
 }
-
+// scores weren't transferring upon href change so I made a new localStorage item that saves the score 
+// once the save score button is clicked the score is saved and the 'tranfer' localStorage item is removed
+let transfer = JSON.parse(window.localStorage.getItem('transfer')) || [];
 let answersArr = quizQuestions[questionCount].answers;
 
 function populateQuestion() {
@@ -193,10 +192,6 @@ q1.text(answersArr[0].text);
 q2.text(answersArr[1].text);
 q3.text(answersArr[2].text);
 q4.text(answersArr[3].text);
-// console.log(questionCount);
-//added listener to parent of answer buttons, catches all button clicks
-
-
 }
 
 qContainer.on('click', 'button', function(e) {
@@ -209,8 +204,6 @@ qContainer.on('click', 'button', function(e) {
 
 function changeTime(num) {
   num < 1 ? secondsRemaining-- : secondsRemaining -= 10;
-  // console.log('changeTime');
-  // setInterval(countdown, 1000)
   }
 
 function countdown() {
@@ -234,8 +227,6 @@ function initQuiz() {
 };
 
  function showScores() {
-  // transferScore = score;
-  // scoreInput.attr('class', '');
   scoreInput.attr('class', 'd-flex mx-auto');
 
 //check storage for scores, !scores return empty arr
@@ -248,6 +239,7 @@ scores.sort((a, b) => {b.score - a.score})
 //  add sorted scores to <ol> on highscores page
   scores.forEach(score => {
 let scoreLi = scoreList.append(`<li>${score.initials} - ${score.score}</li>`)
+window.localStorage.removeItem('transfer');
 })
  }
 
@@ -260,7 +252,6 @@ window.localStorage.removeItem('scores');
 // location.reload(); 
 showScores(score)
 }); 
-
 
 startBtn.on('click', function(e) {
     console.log('started');
