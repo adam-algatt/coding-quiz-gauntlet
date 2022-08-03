@@ -115,7 +115,7 @@ let secondsRemaining = 60;
 let clock; 
 let quizInterval; 
 let questionCount = 0; 
-let score = 0; 
+let score;
 
 function saveScore() {
   let name = $('#score-input').val(); 
@@ -141,10 +141,13 @@ showScores(score);
 }
 
 //function to stop and set location to highscores.html
-function terminate() {
+function terminate(score) {
+  // console.log(score);
   // scoreEl.text(score);
 clearInterval(quizInterval);
+score = score; 
 location.href = './highscores.html'
+console.log(score);
 console.log('terminate called');
 // questionTitleEl.attr('class', 'd-none');
 // qContainer.attr('class', 'd-none');
@@ -173,7 +176,7 @@ if(questionCount < 3) {
 populateQuestion()
 questionCount++;
 } else {
-  terminate()
+  terminate($('#score-li').text())
 }
 
 }
@@ -230,8 +233,8 @@ function initQuiz() {
   populateQuestion(); 
 };
 
- function showScores(score) {
-  transferScore = score;
+ function showScores() {
+  // transferScore = score;
   // scoreInput.attr('class', '');
   scoreInput.attr('class', 'd-flex mx-auto');
 
@@ -259,28 +262,6 @@ showScores(score)
 }); 
 
 
-// function saveScore() {
-//   let name = $('#score-input').value; 
-//   console.log('saveScore() called');
-// // set scores to what's in local storage or empty arr that high 
-// //score objects can be pushed to 
-// let scores = JSON.parse(window.localStorage.getItem('scores')) || [];
- 
-// let highScore = {
-//     score: score,
-//     initials: name
-//   };
-
-//   // add highscore to scores arr then add scores arr to localStorage
-// scores.push(highScore);
-// window.localStorage.setItem('scores', JSON.stringify(scores))
-// // location.reload();
-// showScores(score);
-
-// //switch to highscores.html here and remove previous switch location
-
-// }
-
 startBtn.on('click', function(e) {
     console.log('started');
     startBtn.hide();
@@ -290,6 +271,7 @@ startBtn.on('click', function(e) {
   initQuiz();
   highScoresEl.attr('class', 'd-none');
   scoreEl.attr('class', '');
+  score = 0;
   scoreEl.text(`score: ${score}`);
     // console.log('end click event');
   });
