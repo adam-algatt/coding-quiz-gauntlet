@@ -118,8 +118,9 @@ let questionCount = 0;
 let score = 0; 
 
 function saveScore() {
-  let name = $('#score-input').value; 
+  let name = $('#score-input').val(); 
   console.log('saveScore() called');
+  console.log(score);
 // set scores to what's in local storage or empty arr that high 
 //score objects can be pushed to 
 let scores = JSON.parse(window.localStorage.getItem('scores')) || [];
@@ -141,22 +142,22 @@ showScores(score);
 
 //function to stop and set location to highscores.html
 function terminate() {
-  scoreEl.text(score);
+  // scoreEl.text(score);
 clearInterval(quizInterval);
-// location.href = './highscores.html'
+location.href = './highscores.html'
 console.log('terminate called');
-questionTitleEl.attr('class', 'd-none');
-qContainer.attr('class', 'd-none');
-scoreContainer.removeAttr('class');
-buttonContainer.removeAttr('class');
-scoreContainer.attr('class', 'highscore-container mx-auto text-center');
-buttonContainer.attr('class', 'button-container');
-saveButton.on('click', saveScore());
+// questionTitleEl.attr('class', 'd-none');
+// qContainer.attr('class', 'd-none');
+// scoreContainer.removeAttr('class');
+// buttonContainer.removeAttr('class');
+// scoreContainer.attr('class', 'highscore-container mx-auto text-center');
+// buttonContainer.attr('class', 'button-container');
+
 console.log('end of terminate');
 }
+saveButton.on('click', saveScore);
 
 function iterateQuestions(num) {
-
 
 if (num === 1) {
   score+=20
@@ -170,15 +171,17 @@ console.log('q-count', questionCount);
 
 if(questionCount < 3) {
 populateQuestion()
+questionCount++;
 } else {
   terminate()
 }
-questionCount++
+
 }
+
+let answersArr = quizQuestions[questionCount].answers;
 
 function populateQuestion() {
   // set question el text as quizQuestions.question 
- let answersArr = quizQuestions[questionCount].answers;
   let questionTitle = quizQuestions[questionCount].question; 
  let correct; 
 //  let length = quizQuestions.length - 1; 
@@ -189,19 +192,17 @@ q3.text(answersArr[2].text);
 q4.text(answersArr[3].text);
 // console.log(questionCount);
 //added listener to parent of answer buttons, catches all button clicks
+
+
+}
+
 qContainer.on('click', 'button', function(e) {
   let answerIndex = e.target.id; 
   let correct = answersArr[answerIndex].correct;
   correct === true ? correct = 1 : correct = 0; 
+  // if (questionCount )
   iterateQuestions(correct)
-// if (questionCount === 3) {
-// terminate()
-//   } else {
-//     iterateQuestions(correct)
-//   }
  })
-
-}
 
 function changeTime(num) {
   num < 1 ? secondsRemaining-- : secondsRemaining -= 10;
